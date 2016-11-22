@@ -49,6 +49,7 @@ public class DriverServlet extends HttpServlet {
     		response.getWriter().println("CH** val:Season:"+oldMap.get("season"));
     		response.getWriter().println("CH** val:climate:"+oldMap.get("climate"));
     		response.getWriter().println("Added a simple doc!");
+    		response.getWriter().println("Chitresh");
     	} catch (Exception e) {
     		response.getWriter().println(e.getMessage());
     	}
