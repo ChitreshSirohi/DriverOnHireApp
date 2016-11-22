@@ -41,8 +41,8 @@ public class DriverServlet extends HttpServlet {
     		Map<String, Object> doc = new HashMap<String, Object>();
     		String id = UUID.randomUUID().toString();
     		doc.put("_id", id);
-    		doc.put("season", "winter2");
-    		doc.put("climate", "humid3");
+    		doc.put("season", "winter3");
+    		doc.put("climate", "humid4");
     		dbc.create(doc);
     		Map oldMap = dbc.get(Map.class, id);
     		
