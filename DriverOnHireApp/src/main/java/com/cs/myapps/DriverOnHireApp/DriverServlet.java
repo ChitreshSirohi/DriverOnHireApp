@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.naming.InitialContext;
+import javax.naming.NameClassPair;
+import javax.naming.NamingEnumeration;
 
 /**
  * Servlet implementation class DriverServlet
@@ -30,7 +32,7 @@ public class DriverServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    @Resource(name = "couchdb/cloudant-DriverSample")
+    /*@Resource(name = "couchdb/cloudant-DriverSample")
     protected CouchDbInstance _db;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String dbname = "my_database";
@@ -54,13 +56,19 @@ public class DriverServlet extends HttpServlet {
     	} catch (Exception e) {
     		response.getWriter().println(e.getMessage());
     	}
-    }
+    }*/
     
-   /* protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String dbname = "my_database";
     	CouchDbInstance _db = null;
     	try {
     		_db = (CouchDbInstance) new InitialContext().lookup("java:comp/env/couchdb/cloudant-sample");
+    		InitialContext ctx=new InitialContext();
+    		NamingEnumeration<NameClassPair> list = ctx.list("");
+    		while(list.hasMore())
+    		{
+    			System.out.println("CH**:"+ list.next().getName());
+    		}
     		//creates a database with the specified name
     		CouchDbConnector dbc = _db.createConnector(dbname, true);
     		response.getWriter().println("Created database: " + dbname);
@@ -74,7 +82,7 @@ public class DriverServlet extends HttpServlet {
     	} catch (Exception e) {
     		response.getWriter().println(e.getMessage());
     	}
-    }*/
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
