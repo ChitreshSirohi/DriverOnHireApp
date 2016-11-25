@@ -62,7 +62,7 @@ public class DriverServlet extends HttpServlet {
     	String dbname = "my_database";
     	CouchDbInstance _db = null;
     	try {
-    		_db = (CouchDbInstance) new InitialContext().lookup("java:comp/env/cloudant-sample");
+    		//_db = (CouchDbInstance) new InitialContext().lookup("java:comp/env/cloudant-sample");
     		InitialContext ctx=new InitialContext();
     		NamingEnumeration<NameClassPair> list = ctx.list(ctx.getNameInNamespace());
     		
