@@ -27,19 +27,25 @@ public class DriverController {
 		//write code to save emp object  
 		//here, we are displaying emp object to prove emp has data  
 		driver.setId(driver.getEmail());
-		System.out.println(" "+ driver.getName()+" "+driver.getEmail()+" "+driver.getCity());  
+		System.out.println(" "+ driver.getName()+" "+driver.getEmail()+" "+driver.getCity()+" "+driver.getAvailable());  
 		DriverDao dao = new DriverDao();
 		dao.save(driver);
 		//return new ModelAndView("empform","command",emp);//will display object data  
 		return new ModelAndView("redirect:/viewAddedDriver");//will redirect to viewemp request mapping  
 	}  
 	
-	@RequestMapping("/viewAddedDriver")  
-    public ModelAndView confirmData(){  
-		
-		
+	/*@RequestMapping("/viewAddedDriver")  
+    public ModelAndView confirmData(){ 		
 		DriverDao dao = new DriverDao(); 
 		List<Driver> driverList = dao.getAllDrivers();
+		System.out.println("CH**:"+driverList.size());
+		return new ModelAndView("viewDriver","driverList",driverList);  
+    }  */
+	
+	@RequestMapping("/viewAddedDriver")  
+    public ModelAndView getAllAvailableDrivers(){ 		
+		DriverDao dao = new DriverDao(); 
+		List<Driver> driverList = dao.getAllAvailableDrivers();
 		System.out.println("CH**:"+driverList.size());
 		return new ModelAndView("viewDriver","driverList",driverList);  
     }  

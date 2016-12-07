@@ -20,26 +20,26 @@ public class Driver extends CouchDbDocument{
 	private String id;*/
 	
 	private String name;
-	
+		
 	@NumberFormat(style = Style.CURRENCY)
 	private float salary;
-	private String city;
-	
+	private String city;	
 
 	private String email;
 	
 	private String phoneNo;
 	
-	private boolean isAvailable=true;;
+	private boolean available=true;
 	
 	
-	public Driver(String name, float salary, String city, String email, String phoneNo) {
+	public Driver(String name, float salary, String city, String email, String phoneNo,boolean available) {
 		super();
 		this.name = name;
 		this.salary = salary;
 		this.city = city;
 		this.email = email;
 		this.phoneNo = phoneNo;
+		this.available = available;
 	}
 	
 	/*@JsonProperty("_rev")
@@ -62,12 +62,12 @@ public class Driver extends CouchDbDocument{
 		this.id = _id;
 	}*/
 
-	public boolean isAvailable() {
-		return isAvailable;
+	public boolean getAvailable() {
+		return available;
 	}
 
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	public Driver() {

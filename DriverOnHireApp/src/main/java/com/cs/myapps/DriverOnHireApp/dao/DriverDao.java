@@ -7,6 +7,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
+import org.ektorp.ViewQuery;
+
 import javax.naming.InitialContext;
 
 import com.cs.myapps.DriverOnHireApp.beans.Driver;
@@ -25,6 +27,7 @@ public class DriverDao {
 			
 			System.out.println("CH** About to create DB");
 			CouchDbConnector dbc = _db.createConnector(dbname, true);
+			
 			return dbc;
 		}
 		catch (Exception e) {e.printStackTrace();
@@ -63,9 +66,19 @@ public class DriverDao {
 		LinkedList<Driver> driverList = new LinkedList<Driver>();
 		for (String driverId : list)
 		{
-			driverList.add(dbc.get(Driver.class, driverId));
+			System.out.println("CH** driverId:"+driverId);
+			if(driverId.contains("@"))
+				driverList.add(dbc.get(Driver.class, driverId));
 		}
 		return driverList;
+	}
+	
+	public List<Driver> getAllAvailableDrivers()
+	{
+		CouchDbConnector dbc = createConnection();
+		ViewQuery query = new ViewQuery().designDocId("_design/isAvailable").viewName("isAvailable").includeDocs(true);
+		return dbc.queryView(query,Driver.class);
+
 	}
 
 

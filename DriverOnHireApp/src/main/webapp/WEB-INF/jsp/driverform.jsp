@@ -32,6 +32,10 @@
           <td><form:input path="phoneNo" /></td>  
          </tr>
          <tr>    
+          <td> Available:</td>    
+          <td><form:checkbox path="available" value="false"/></td>  
+         </tr>
+         <tr>    
           <td colspan="2"><input type="submit" value="Save" /></td>    
          </tr>    
         </table>    
